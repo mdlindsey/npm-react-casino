@@ -16,7 +16,6 @@ const config = {
       ],
     }),
     resolve()
-    // css({ output: 'src/css/bundle.css' })
   ],
   output: {
     format: 'umd',

@@ -30,11 +30,13 @@
     "url": "https://github.com/adom/npm-react-casino/issues"
   },
   "homepage": "https://github.com/adom/npm-react-casino#readme",
+  "dependencies": {
+    "react": "^16.8.6"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "babel-plugin-transform-css-import-to-string": "0.0.2",
-    "react": "^16.8.6",
     "rollup": "^1.10.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-copy-assets": "^2.0.1",
