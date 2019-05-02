@@ -2,7 +2,7 @@
 
 Component library for playing cards, chips, and other common casino game items.
 
-## Useage
+## Usage
 
 You can pass a `className` attribute to any component. If you supply a string, only the string you supply will be used, overriding the default classes. If you supply an array, your supplied classes will be applied in addition to the default classes.
 
@@ -20,3 +20,7 @@ const PlayingCard = () => {
   );
 };
 ```
+
+## Building
+
+When modifying the package for testing or publishing run `npm run build` which will create the `dist/` folder from which the module is served.
