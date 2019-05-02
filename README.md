@@ -4,7 +4,7 @@ Component library for playing cards, chips, and other common casino game items.
 
 ## Usage
 
-You can pass a `className` attribute to any component. If you supply a string, only the string you supply will be used, overriding the default classes. If you supply an array, your supplied classes will be applied in addition to the default classes.
+You can pass a `className` attribute to any component. If you supply a string, only the string you supply will be used, overriding the default classes. If you supply an array, your supplied classes will be applied in addition to the default classes. You will see various styling components such as `CardStyles` in the examples; all styling components are optional and simply render CSS for default styling.
 
 ### Cards
 
@@ -12,10 +12,11 @@ Cards can accept width/height attributes. If no suit and/or face is supplied, th
 
 ```js
 import React from 'react';
-import { Card } from 'react-casino';
+import { Card, CardStyles } from 'react-casino';
 
 const PlayingCard = () => {
   return (
+    <CardStyles />
     <Card face="A" suit="S" />
   );
 };
