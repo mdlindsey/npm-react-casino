@@ -4,7 +4,7 @@ import { terser } from 'rollup-plugin-terser';
 import resolve from 'rollup-plugin-node-resolve';
 const config = {
   input: 'src/index.js',
-  external: ['react', 'insert-css'],
+  external: ['react'],
   plugins: [
     babel({
       exclude: 'node_modules/**'
@@ -22,8 +22,7 @@ const config = {
     format: 'umd',
     name: 'casino',
     globals: {
-      'react': 'React',
-      'insert-css': 'insertCss'
+      'react': 'React'
     }
   }
 };
