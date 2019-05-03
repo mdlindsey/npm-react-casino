@@ -14,12 +14,15 @@ Cards can accept width/height attributes. If no suit and/or face is supplied, th
 import React from 'react';
 import { Card, CardStyles } from 'react-casino';
 
-const PlayingCard = () => {
+const BlackJack = () => {
   return (
-    <CardStyles />
-    <Card face="A" suit="S" />
-  );
-};
+    <div>
+      <CardStyles />
+      <Card face="A" suit="S" />
+      <Card face="K" suit="S" />
+    </div>
+  )
+}
 ```
 
 ## Building
