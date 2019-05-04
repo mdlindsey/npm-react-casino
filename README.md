@@ -57,7 +57,7 @@ const PepperHand = () => {
         { suit: 'S', face: 'Q' },
         { suit: 'S', face: 'J' },
         { suit: 'S', face: 'T' },
-        { suit: 'S', face: '9' }
+        { suit: 'C', face: '9' }
       ]} />
     </div>
   );
