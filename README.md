@@ -21,8 +21,8 @@ const BlackJack = () => {
       <Card face="A" suit="S" />
       <Card face="K" suit="S" />
     </div>
-  )
-}
+  );
+};
 ```
 
 ## Building

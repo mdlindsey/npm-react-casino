@@ -1,5 +1,5 @@
 import babel from 'rollup-plugin-babel';
-import copy from 'rollup-plugin-copy-assets';
+import copy from 'rollup-plugin-copy';
 import { terser } from 'rollup-plugin-terser';
 import resolve from 'rollup-plugin-node-resolve';
 const config = {
@@ -10,12 +10,13 @@ const config = {
       exclude: 'node_modules/**'
     }),
     terser(),
+    resolve(),
     copy({
-      assets: [
-        'png'
+      targets: [
+        'src/components/png'
       ],
-    }),
-    resolve()
+      outputFolder: 'dist'
+    })
   ],
   output: {
     format: 'umd',
