@@ -22,7 +22,7 @@ export const Deck = ({ color, size=52 }) => {
 /******************************************************************
  * Hand
  ******************************************************************/
-export const Hand = ({ cards=[], trump=false, follow=false, onClick=()=>{}, onHover=()=>{} }) => {
+export const Hand = ({ cards=[], trump=false, follow=false, className, onClick=()=>{}, onHover=()=>{} }) => {
   const defaultClasses = ['playing-card'];
   return (
     <ul className={ reducedClassNames(className, defaultClasses) }>
