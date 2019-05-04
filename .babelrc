@@ -1,8 +1,0 @@
-{
-  "presets":[
-      "@babel/react", "@babel/preset-env" // , "@babel/preset-react"
-  ],
-  "plugins": [
-    "transform-css-import-to-string"
-  ]
-}

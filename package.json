@@ -1,59 +1,34 @@
 {
-  "name": "react-casino",
-  "version": "0.1.6",
-  "description": "React components for playing cards, chips, etc",
-  "main": "dist/casino.min.js",
-  "scripts": {
-    "build": "rollup -c -o dist/casino.min.js",
-    "test": "jest",
-    "test:update": "jest --updateSnapshot"
-  },
-  "jest": {
-    "verbose": true,
-    "moduleNameMapper": {
-      ".+\\.(css|styl|less|sass|scss)$": "identity-obj-proxy",
-      ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file.js"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/adom/npm-react-casino.git"
-  },
-  "keywords": [
-    "poker",
-    "blackjack",
-    "spades",
-    "hearts",
-    "casino",
-    "cards",
-    "chips",
-    "react"
-  ],
-  "author": {
-    "name": "Adom.co",
-    "email": "dev@adom.co"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/adom/npm-react-casino/issues"
-  },
-  "homepage": "https://github.com/adom/npm-react-casino#readme",
+  "name": "react-casino-demo",
+  "version": "0.0.1",
+  "private": true,
   "dependencies": {
-    "react": "^16.8.6"
+    "react": "^16.8.6",
+    "react-casino": "0.0.10",
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^3.0.0"
   },
-  "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
-    "babel-jest": "^24.7.1",
-    "babel-plugin-transform-css-import-to-string": "0.0.2",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.7.1",
-    "react-test-renderer": "^16.8.6",
-    "rollup": "^1.10.1",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-copy": "^2.0.0",
-    "rollup-plugin-node-resolve": "^4.2.3",
-    "rollup-plugin-terser": "^4.0.4"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
