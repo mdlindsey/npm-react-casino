@@ -5,7 +5,8 @@
   "main": "dist/casino.min.js",
   "scripts": {
     "build": "rollup -c -o dist/casino.min.js",
-    "test": "jest"
+    "test": "jest",
+    "test:update": "jest --updateSnapshot"
   },
   "jest": {
     "verbose": true,

@@ -76,8 +76,15 @@ export const Card = ({ suit, face, width, height, className, onClick=()=>{}, onH
     default: 
       face = 'BACK';
   }
+  const click = (e,card) => {
+    onClick(e,card);
+  };
+  const hover = (e,card) => {
+    onHover(e,card);
+  };
   return (
-    <span className={ Array.isArray(className) ? [...className, ...defaultClasses].join(' ') : className || defaultClasses.join(' ') }>
+    <span onClick={e => click(e,{face,suit})} onHover={e => hover(e,{face,suit})}
+      className={ Array.isArray(className) ? [...className, ...defaultClasses].join(' ') : className || defaultClasses.join(' ') }>
       <img src={ require(`./assets/png/cards/${face}${suit}.png`) } alt={`${face}${suit}`} style={style} />
     </span>
   );
