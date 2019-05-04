@@ -2,32 +2,43 @@ import React from 'react';
 import { cardClassNames } from './mixins';
 import cardsCss from './assets/css/cards.css';
 import handsCss from './assets/css/hands.css';
-
+/******************************************************************
+ * Styles
+ ******************************************************************/
 export const CardStyles = () => (
   <style dangerouslySetInnerHTML={{__html: cardsCss}} />
 );
 export const HandStyles = () => (
   <style dangerouslySetInnerHTML={{__html: handsCss}} />
 );
+/******************************************************************
+ * Deck
+ ******************************************************************/
 export const Deck = ({ color, size=52 }) => {
   return (
     <div>Deck</div>
   );
 };
-export const Hand = ({ cards=[], trump=false, playable=false, fan=10, space=5 }) => {
+/******************************************************************
+ * Hand
+ ******************************************************************/
+export const Hand = ({ cards=[], trump=false, playable=false, fan=10, space=5, onClick=()=>{}, onHover=()=>{} }) => {
   return (
     <ul className="hand">
       {
         cards.map((card,i) => (
           <li key={i} className={cardClassNames(card)}>
-            <Card suit={card.suit} face={card.face} playable={playable} />
+            <Card suit={card.suit} face={card.face} playable={playable} onClick={onClick} onHover={onHover} />
           </li>
         ))
       }
     </ul>
   );
 };
-export const Card = ({ suit, face, width, height, className }) => {
+/******************************************************************
+ * Card
+ ******************************************************************/
+export const Card = ({ suit, face, width, height, className, onClick=()=>{}, onHover=()=>{} }) => {
   const defaultClasses = ['playing-card'];
   let style = {};
   if (width)
@@ -71,11 +82,17 @@ export const Card = ({ suit, face, width, height, className }) => {
     </span>
   );
 };
+/******************************************************************
+ * Chip
+ ******************************************************************/
 export const Chip = ({ color, value }) => {
   return (
     <div>Chip</div>
   );
 };
+/******************************************************************
+ * Dice
+ ******************************************************************/
 export const Dice = ({ color, value }) => {
   return (
     <div>Dice</div>
