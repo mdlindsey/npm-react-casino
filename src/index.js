@@ -9,7 +9,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       {/* <Route path="/demo/pepper" render={inheritedProps => <GameTable />} /> */}
-      <Route render={inheritedProps => <Home />} />
+      <Route render={props => <Home />} />
     </Switch>
   </BrowserRouter>
   ,
