@@ -12,16 +12,17 @@ export const cardValue = (face) => {
   }
 }
 
-export const reducedClassNames = (defaultClasses, className) => Array.isArray(className) ? [...className, ...defaultClasses].join(' ') : className || defaultClasses.join(' ');
+export const reducedClassNames = (defaultClasses=[], className=[]) => Array.isArray(className) ? [...className, ...defaultClasses].join(' ') : className || defaultClasses.join(' ');
+
+export const isBower = (card,trump,bowers={S: 'C', C: 'S', H: 'D', D: 'H'}) => trump && card.suit === bowers[trump] && card.face === 'J';
 
 export const isPlayable = (card,hand,suit,trump) => {
-  const bowers = {S: 'C', C: 'S', H: 'D', D: 'H'};
-  const trumpBower = trump && card.suit === bowers[trump] && card.face === 'J';
+  const trumpBower = isBower(card,trump);
   const sameSuit = card.suit === suit;
   const noCardLed = !suit;
   let haveNoneOfSuit = true;
   hand.map(c => {
-    if (c.suit === suit) {
+    if (c.suit === suit && !isBower(c,trump)) {
       haveNoneOfSuit = false;
     }
     return c;

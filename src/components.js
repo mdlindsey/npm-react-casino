@@ -23,9 +23,9 @@ export const Deck = ({ color, size=52 }) => {
  * Hand
  ******************************************************************/
 export const Hand = ({ cards=[], trump=false, follow=false, className, onClick=()=>{}, onHover=()=>{} }) => {
-  const defaultClasses = ['playing-card'];
+  const defaultClasses = ['hand'];
   return (
-    <ul className={ reducedClassNames(className, defaultClasses) }>
+    <ul className={ reducedClassNames(defaultClasses, className) }>
       {
         cards.map((card,i) => {
           const classes = cardClassNames(card,cards,follow,trump);
@@ -88,7 +88,7 @@ export const Card = ({ suit, face, width, height, className, onClick=()=>{}, onH
   };
   return (
     <span onClick={e => click(e,{face,suit})} onHover={e => hover(e,{face,suit})}
-      className={ reducedClassNames(className,defaultClasses) }>
+      className={ reducedClassNames(defaultClasses,className) }>
       <img src={ require(`./assets/png/cards/${face}${suit}.png`) } alt={`${face}${suit}`} style={style} />
     </span>
   );
