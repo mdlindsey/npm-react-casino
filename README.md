@@ -25,6 +25,31 @@ const BlackJack = () => {
 };
 ```
 
+### Hands
+
+Arrange cards and sort them based on rank and suit.
+
+```js
+import React from 'react';
+import { Card, CardStyles } from 'react-casino';
+
+const PepperHand = () => {
+  return (
+    <div>
+      <HandStyles />
+      <Hand playable="C" cards={[
+        { suit: 'S', face: 'A' },
+        { suit: 'S', face: 'K' },
+        { suit: 'S', face: 'Q' },
+        { suit: 'S', face: 'J' },
+        { suit: 'S', face: 'T' },
+        { suit: 'S', face: '9' }
+      ]} />
+    </div>
+  );
+};
+```
+
 ## Building
 
 When modifying the package for testing or publishing run `npm run build` which will create the `dist/` folder from which the module is served.

@@ -13,9 +13,9 @@ const config = {
     resolve(),
     copy({
       targets: [
-        'src/components/png'
+        'src/assets/png'
       ],
-      outputFolder: 'dist'
+      outputFolder: 'dist/assets'
     })
   ],
   output: {
