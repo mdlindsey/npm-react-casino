@@ -22,15 +22,18 @@ export const Deck = ({ color, size=52 }) => {
 /******************************************************************
  * Hand
  ******************************************************************/
-export const Hand = ({ cards=[], trump=false, playable=false, fan=10, space=5, onClick=()=>{}, onHover=()=>{} }) => {
+export const Hand = ({ cards=[], trump=false, follow=false, onClick=()=>{}, onHover=()=>{} }) => {
   return (
     <ul className="hand">
       {
-        cards.map((card,i) => (
-          <li key={i} className={cardClassNames(card)}>
-            <Card suit={card.suit} face={card.face} playable={playable} onClick={onClick} onHover={onHover} />
-          </li>
-        ))
+        cards.map((card,i) => {
+          const classes = cardClassNames(card,cards,follow,trump);
+          return (
+            <li key={i} className={classes}>
+              <Card suit={card.suit} face={card.face} playable={classes.includes('playable')} onClick={onClick} onHover={onHover} />
+            </li>
+          );
+        })
       }
     </ul>
   );

@@ -29,20 +29,20 @@ export const isPlayable = (card,hand,suit,trump) => {
 };
 
 
-export const cardClassNames = (card,hand,suit,trump,swaps) => {
+export const cardClassNames = (card,hand,suit,trump,swaps=[]) => {
   let classNames = [];
-  // if (!isPlayable(card,hand,suit,trump)) {
-  //   classNames.push('dim');
-  // } else {
-  //   classNames.push('playable');
-  // }
+  if (!isPlayable(card,hand,suit,trump)) {
+    classNames.push('dim');
+  } else {
+    classNames.push('playable');
+  }
   // check swaps
-  // if (swaps && swaps.length === 1 && swap) {
-  //   const thisCardSwaps = this.props.swaps.filter(swap => swap.card.suit === card.suit && swap.card.face === card.face);
-  //   if (thisCardSwaps.length) {
-  //     classNames.push('swapped');
-  //   }
-  // }
+  if (swaps && swaps.length === 1 && swap) {
+    const thisCardSwaps = swaps.filter(swap => swap.card.suit === card.suit && swap.card.face === card.face);
+    if (thisCardSwaps.length) {
+      classNames.push('swapped');
+    }
+  }
   return classNames.join(' ');
 };
 

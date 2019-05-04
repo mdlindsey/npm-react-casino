@@ -37,7 +37,7 @@ const PepperHand = () => {
   return (
     <div>
       <HandStyles />
-      <Hand playable="C" cards={[
+      <Hand follow="C" cards={[
         { suit: 'S', face: 'A' },
         { suit: 'S', face: 'K' },
         { suit: 'S', face: 'Q' },
