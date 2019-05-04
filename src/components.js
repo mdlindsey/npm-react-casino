@@ -1,5 +1,5 @@
 import React from 'react';
-import { cardClassNames } from './mixins';
+import { cardClassNames, reducedClassNames } from './mixins';
 import cardsCss from './assets/css/cards.css';
 import handsCss from './assets/css/hands.css';
 /******************************************************************
@@ -23,8 +23,9 @@ export const Deck = ({ color, size=52 }) => {
  * Hand
  ******************************************************************/
 export const Hand = ({ cards=[], trump=false, follow=false, onClick=()=>{}, onHover=()=>{} }) => {
+  const defaultClasses = ['playing-card'];
   return (
-    <ul className="hand">
+    <ul className={ reducedClassNames(className, defaultClasses) }>
       {
         cards.map((card,i) => {
           const classes = cardClassNames(card,cards,follow,trump);
@@ -87,7 +88,7 @@ export const Card = ({ suit, face, width, height, className, onClick=()=>{}, onH
   };
   return (
     <span onClick={e => click(e,{face,suit})} onHover={e => hover(e,{face,suit})}
-      className={ Array.isArray(className) ? [...className, ...defaultClasses].join(' ') : className || defaultClasses.join(' ') }>
+      className={ reducedClassNames(className,defaultClasses) }>
       <img src={ require(`./assets/png/cards/${face}${suit}.png`) } alt={`${face}${suit}`} style={style} />
     </span>
   );

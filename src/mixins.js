@@ -12,6 +12,8 @@ export const cardValue = (face) => {
   }
 }
 
+export const reducedClassNames = (defaultClasses, className) => Array.isArray(className) ? [...className, ...defaultClasses].join(' ') : className || defaultClasses.join(' ');
+
 export const isPlayable = (card,hand,suit,trump) => {
   const bowers = {S: 'C', C: 'S', H: 'D', D: 'H'};
   const trumpBower = trump && card.suit === bowers[trump] && card.face === 'J';
