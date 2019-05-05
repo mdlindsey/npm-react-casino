@@ -58,6 +58,8 @@ ul.hand > li.playable:hover {
   padding-bottom: 0.5em;
 }
 
+ul.deck { position: absolute; }
+
 
 ul.table,
 ul.hand,

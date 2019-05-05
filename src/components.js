@@ -22,18 +22,25 @@ export const IcomoonStyles = () => (
  * Deck
  ******************************************************************/
 export const Deck = ({ cards=[], size=52, className, style, onClick=()=>{}, onHover=()=>{}  }) => {
+  let [styles, setStyles] = useState([]);
+  if (!styles.length) {
+    for(let i = 0; i++ < Number(size) || cards.length;)
+    styles.push({});
+  }
   const defaultClasses = ['deck'];
-  let [styles, setStyles] = useState(!style ? { left: `calc(50vw - 90px`, top: `calc(50vh - 80px)` } : style);
-  const c = [];
-  for(let i = 0; i++ < Number(size) || cards.length;)
-    c.push(i);
+  const newStyle = !style ? { left: `calc(50vw - 90px`, top: `calc(50vh - 80px)` } : style;
+  const setStyle = (i,s,styles) => {
+    let arr = [...styles];
+    arr[i] = s;
+    setStyles(arr);
+  };
   return (
-    <ul className={ reducedClassNames(defaultClasses, className) } style={style}>
+    <ul className={ reducedClassNames(defaultClasses, className) } style={newStyle}>
       {
-        c.map((i) => {
+        styles.map((style,i) => {
           return (
-            <li key={i} style={styles} onClick={() => setStyles({ left: `calc(50vw - 90px`, top: `calc(30vh - ${i*2}px)` } )}>
-              { <Card onClick={onClick} onMouseOver={onHover} style={{bottom: i/3, left: i/3, zIndex: i}} /> }
+            <li key={i} style={style} onClick={() => setStyle(i, { left: `calc(250px + ${i/3}px`, bottom: `calc(250px - ${i/3}px)` }, styles)}>
+              { <Card onClick={onClick} onMouseOver={onHover} style={{bottom: i/3, left: i/3, zIndex: i+1}} /> }
             </li>
           );
         })
