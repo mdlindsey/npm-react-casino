@@ -4,7 +4,7 @@ Component library for playing cards, chips, and other common casino game items.
 
 ## Usage
 
-You can pass a `className` attribute to any component. If you supply a string, only the string you supply will be used, overriding the default classes. If you supply an array, your supplied classes will be applied in addition to the default classes. You will see various styling components such as `CardStyles` in the examples; all styling components are optional and simply render CSS for default styling.
+You can pass a `style`, and `className` attribute to any component. Expected behavior is default for styles. With classes, if you supply a string, only the string you supply will be used, overriding the default classes. If you supply an array, your supplied classes will be applied in addition to the default classes. You will see various styling components such as `CardStyles` in the examples; all styling components are optional and simply render CSS for default styling.
 
 ### Cards
 
@@ -35,6 +35,7 @@ const BlackJack = () => {
 - `height` - Height of the card
 - `onClick` - Callback that is executed when a card is clicked; receives `(event,card)` parameters
 - `onHover` - Callback that is executed when a card is hovered over; receives `(event,card)` parameters
+- `style` - styles object to apply to the wrapper
 - `className` - When supplied with a string, only the string you supply will be used, overriding the default classes; if supplied with an array, your supplied classes will be applied in addition to the default classes
 
 ### Hands
@@ -71,6 +72,7 @@ const PepperHand = () => {
 - `trump` - Trump suit (if applicable - eg: Spades, Pepper)
 - `onClick` - Callback that is executed when a card in the hand is clicked; receives `(event,card)` parameters
 - `onHover` - Callback that is executed when a card in the hand is hovered over; receives `(event,card)` parameters
+- `style` - styles object to apply to the wrapper
 - `className` - When supplied with a string, only the string you supply will be used, overriding the default classes; if supplied with an array, your supplied classes will be applied in addition to the default classes
 
 ## Building

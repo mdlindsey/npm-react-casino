@@ -12,11 +12,12 @@
 }
 
 ul.hand {
-  position: absolute;
+  position: fixed;
+  z-index: 5;
   font-size: 2.5em;
 }
 
-/* .hand:nth-of-type(1) {
+.hand:nth-of-type(1) {
   bottom: -2em;
 }
 .hand:nth-of-type(2) {
@@ -45,7 +46,7 @@ ul.hand {
   -o-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
-} */
+}
 
 
 /* https://github.com/selfthinker/CSS-Playing-Cards */
@@ -90,12 +91,6 @@ ul.deck > li {
 ul.hand > li {
     bottom: 0;
 }
-ul.hand > li:nth-child(1)  { left: 0; }
-ul.hand > li:nth-child(2)  { left: 1.1em; }
-ul.hand > li:nth-child(3)  { left: 2.2em; }
-ul.hand > li:nth-child(4)  { left: 3.3em; }
-ul.hand > li:nth-child(5)  { left: 4.4em; }
-ul.hand > li:nth-child(6)  { left: 5.5em; }
 
 ul.hand > li.dim::after,
 ul.hand > li.swapped::after {
@@ -112,6 +107,12 @@ ul.hand > li.swapped::after {
 }
 ul.hand > li.swapped::after {
   height: calc(100% - 0.5em);
+}
+
+ul.deck > li:nth-of-type(odd) img {
+  border: 1px solid gray;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
 ul.hand.played {
@@ -186,121 +187,184 @@ ul.hand.played.trick-taken.trick-taken-direction-3 { /* right */
 
 /* rotate cards if rotateHand option is on */
 
-ul.hand > li:nth-child(1) {
--moz-transform: translate(1.1em, .3em) rotate(-20deg);
-  -webkit-transform: translate(1.1em, .3em) rotate(-20deg);
-  -o-transform: translate(1.1em, .3em) rotate(-20deg);
-  transform: translate(1.1em, .3em) rotate(-20deg);
+/* 2 card hand */
+
+ul.hand.cards-2 > li:nth-child(1)  { left: 0; }
+ul.hand.cards-2 > li:nth-child(2)  { left: 1.1em; }
+
+ul.hand.cards-2 > li:nth-child(1) {
+  -moz-transform: translate(.3em, .1em) rotate(-6deg);
+  -webkit-transform: translate(.3em, .1em) rotate(-6deg);
+  -o-transform: translate(.3em, .1em) rotate(-6deg);
+  transform: translate(.3em, .1em) rotate(-6deg);
 }
-ul.hand > li:nth-child(2),
+ul.hand.cards-2 > li:nth-child(2),
+.played > .playing-card:nth-child(1)  {
+  -moz-transform: translate(-.1em, .1em) rotate(3deg);
+  -webkit-transform: translate(-.1em, .1em) rotate(3deg);
+  -o-transform: translate(-.1em, .1em) rotate(3deg);
+  transform: translate(-.1em, .1em) rotate(3deg);
+}
+
+/* 4 card hand */
+
+ul.hand.cards-4 > li:nth-child(1)  { left: 0; }
+ul.hand.cards-4 > li:nth-child(2)  { left: 1.1em; }
+ul.hand.cards-4 > li:nth-child(3)  { left: 2.2em; }
+ul.hand.cards-4 > li:nth-child(4)  { left: 3.3em; }
+
+ul.hand.cards-4 > li:nth-child(1),
 .played > .playing-card:nth-child(1)  {
   -moz-transform: translate(.7em, .2em) rotate(-15deg);
   -webkit-transform: translate(.7em, .2em) rotate(-15deg);
   -o-transform: translate(.7em, .2em) rotate(-15deg);
   transform: translate(.7em, .2em) rotate(-15deg);
 }
-ul.hand > li:nth-child(3),
+ul.hand.cards-4 > li:nth-child(2),
+.played > .playing-card:nth-child(1)  {
+  -moz-transform: translate(.3em, .1em) rotate(-6deg);
+  -webkit-transform: translate(.3em, .1em) rotate(-6deg);
+  -o-transform: translate(.3em, .1em) rotate(-6deg);
+  transform: translate(.3em, .1em) rotate(-6deg);
+}
+ul.hand.cards-4 > li:nth-child(3),
+.played > .playing-card:nth-child(2)  {
+  -moz-transform: translate(-.1em, .1em) rotate(3deg);
+  -webkit-transform: translate(-.1em, .1em) rotate(3deg);
+  -o-transform: translate(-.1em, .1em) rotate(3deg);
+  transform: translate(-.1em, .1em) rotate(3deg);
+}
+ul.hand.cards-4 > li:nth-child(4),
+.played > .playing-card:nth-child(3)  {
+  -moz-transform: translate(-.5em, .2em) rotate(12deg);
+  -webkit-transform: translate(-.5em, .2em) rotate(12deg);
+  -o-transform: translate(-.5em, .2em) rotate(12deg);
+  transform: translate(-.5em, .2em) rotate(12deg);
+}
+
+/* 6 card hand */
+ul.hand.cards-6 > li:nth-child(1)  { left: 0; }
+ul.hand.cards-6 > li:nth-child(2)  { left: 1.1em; }
+ul.hand.cards-6 > li:nth-child(3)  { left: 2.2em; }
+ul.hand.cards-6 > li:nth-child(4)  { left: 3.3em; }
+ul.hand.cards-6 > li:nth-child(5)  { left: 4.4em; }
+ul.hand.cards-6 > li:nth-child(6)  { left: 5.5em; }
+
+ul.hand.cards-6 > li:nth-child(1) {
+  -moz-transform: translate(1.1em, .3em) rotate(-20deg);
+  -webkit-transform: translate(1.1em, .3em) rotate(-20deg);
+  -o-transform: translate(1.1em, .3em) rotate(-20deg);
+  transform: translate(1.1em, .3em) rotate(-20deg);
+}
+ul.hand.cards-6 > li:nth-child(2),
+.played > .playing-card:nth-child(1)  {
+  -moz-transform: translate(.7em, .2em) rotate(-15deg);
+  -webkit-transform: translate(.7em, .2em) rotate(-15deg);
+  -o-transform: translate(.7em, .2em) rotate(-15deg);
+  transform: translate(.7em, .2em) rotate(-15deg);
+}
+ul.hand.cards-6 > li:nth-child(3),
 .played > .playing-card:nth-child(2)  {
   -moz-transform: translate(.3em, .1em) rotate(-6deg);
   -webkit-transform: translate(.3em, .1em) rotate(-6deg);
   -o-transform: translate(.3em, .1em) rotate(-6deg);
   transform: translate(.3em, .1em) rotate(-6deg);
 }
-ul.hand > li:nth-child(4),
+ul.hand.cards-6 > li:nth-child(4),
 .played > .playing-card:nth-child(3)  {
   -moz-transform: translate(-.1em, .1em) rotate(3deg);
   -webkit-transform: translate(-.1em, .1em) rotate(3deg);
   -o-transform: translate(-.1em, .1em) rotate(3deg);
   transform: translate(-.1em, .1em) rotate(3deg);
 }
-ul.hand > li:nth-child(5),
+ul.hand.cards-6 > li:nth-child(5),
 .played > .playing-card:nth-child(4)  {
   -moz-transform: translate(-.5em, .2em) rotate(12deg);
   -webkit-transform: translate(-.5em, .2em) rotate(12deg);
   -o-transform: translate(-.5em, .2em) rotate(12deg);
   transform: translate(-.5em, .2em) rotate(12deg);
 }
-ul.hand > li:nth-child(6)  {
+ul.hand.cards-6 > li:nth-child(6)  {
   -moz-transform: translate(-.9em, .3em) rotate(21deg);
   -webkit-transform: translate(-.9em, .3em) rotate(21deg);
   -o-transform: translate(-.9em, .3em) rotate(21deg);
   transform: translate(-.9em, .3em) rotate(21deg);
 }
-/* ul.hand > li:nth-child(1) {
+ul.hand.cards-13 > li:nth-child(1) {
   -moz-transform: translate(1.9em, .9em) rotate(-42deg);
   -webkit-transform: translate(1.9em, .9em) rotate(-42deg);
   -o-transform: translate(1.9em, .9em) rotate(-42deg);
   transform: translate(1.9em, .9em) rotate(-42deg);
 }
-ul.hand > li:nth-child(2) {
+ul.hand.cards-13 > li:nth-child(2) {
   -moz-transform: translate(1.5em, .5em) rotate(-33deg);
   -webkit-transform: translate(1.5em, .5em) rotate(-33deg);
   -o-transform: translate(1.5em, .5em) rotate(-33deg);
   transform: translate(1.5em, .5em) rotate(-33deg);
 }
-ul.hand > li:nth-child(3) {
+ul.hand.cards-13 > li:nth-child(3) {
   -moz-transform: translate(1.1em, .3em) rotate(-24deg);
   -webkit-transform: translate(1.1em, .3em) rotate(-24deg);
   -o-transform: translate(1.1em, .3em) rotate(-24deg);
   transform: translate(1.1em, .3em) rotate(-24deg);
 }
-ul.hand > li:nth-child(4) {
+ul.hand.cards-13 > li:nth-child(4) {
   -moz-transform: translate(.7em, .2em) rotate(-15deg);
   -webkit-transform: translate(.7em, .2em) rotate(-15deg);
   -o-transform: translate(.7em, .2em) rotate(-15deg);
   transform: translate(.7em, .2em) rotate(-15deg);
 }
-ul.hand > li:nth-child(5) {
+ul.hand.cards-13 > li:nth-child(5) {
   -moz-transform: translate(.3em, .1em) rotate(-6deg);
   -webkit-transform: translate(.3em, .1em) rotate(-6deg);
   -o-transform: translate(.3em, .1em) rotate(-6deg);
   transform: translate(.3em, .1em) rotate(-6deg);
 }
-ul.hand > li:nth-child(6) {
+ul.hand.cards-13 > li:nth-child(6) {
   -moz-transform: translate(-.1em, .1em) rotate(3deg);
   -webkit-transform: translate(-.1em, .1em) rotate(3deg);
   -o-transform: translate(-.1em, .1em) rotate(3deg);
   transform: translate(-.1em, .1em) rotate(3deg);
 }
-ul.hand > li:nth-child(7) {
+ul.hand.cards-13 > li:nth-child(7) {
   -moz-transform: translate(-.5em, .2em) rotate(12deg);
   -webkit-transform: translate(-.5em, .2em) rotate(12deg);
   -o-transform: translate(-.5em, .2em) rotate(12deg);
   transform: translate(-.5em, .2em) rotate(12deg);
 }
-ul.hand > li:nth-child(8) {
+ul.hand.cards-13 > li:nth-child(8) {
   -moz-transform: translate(-.9em, .3em) rotate(21deg);
   -webkit-transform: translate(-.9em, .3em) rotate(21deg);
   -o-transform: translate(-.9em, .3em) rotate(21deg);
   transform: translate(-.9em, .3em) rotate(21deg);
 }
-ul.hand > li:nth-child(9) {
+ul.hand.cards-13 > li:nth-child(9) {
   -moz-transform: translate(-1.3em, .6em) rotate(30deg);
   -webkit-transform: translate(-1.3em, .6em) rotate(30deg);
   -o-transform: translate(-1.3em, .6em) rotate(30deg);
   transform: translate(-1.3em, .6em) rotate(30deg);
 }
-ul.hand > li:nth-child(10) {
+ul.hand.cards-13 > li:nth-child(10) {
   -moz-transform: translate(-1.7em, 1em) rotate(39deg);
   -webkit-transform: translate(-1.7em, 1em) rotate(39deg);
   -o-transform: translate(-1.7em, 1em) rotate(39deg);
   transform: translate(-1.7em, 1em) rotate(39deg);
 }
-ul.hand > li:nth-child(11) {
+ul.hand.cards-13 > li:nth-child(11) {
   -moz-transform: translate(-2.2em, 1.5em) rotate(48deg);
   -webkit-transform: translate(-2.2em, 1.5em) rotate(48deg);
   -o-transform: translate(-2.2em, 1.5em) rotate(48deg);
   transform: translate(-2.2em, 1.5em) rotate(48deg);
 }
-ul.hand > li:nth-child(12) {
+ul.hand.cards-13 > li:nth-child(12) {
   -moz-transform: translate(-2.8em, 2.1em) rotate(57deg);
   -webkit-transform: translate(-2.8em, 2.1em) rotate(57deg);
   -o-transform: translate(-2.8em, 2.1em) rotate(57deg);
   transform: translate(-2.8em, 2.1em) rotate(57deg);
 }
-ul.hand > li:nth-child(13) {
+ul.hand.cards-13 > li:nth-child(13) {
   -moz-transform: translate(-3.5em, 2.8em) rotate(66deg);
   -webkit-transform: translate(-3.5em, 2.8em) rotate(66deg);
   -o-transform: translate(-3.5em, 2.8em) rotate(66deg);
   transform: translate(-3.5em, 2.8em) rotate(66deg);
-} */
+}

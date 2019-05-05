@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { cardClassNames, reducedClassNames } from './mixins';
 import cardsCss from './assets/css/cards.css';
 import handsCss from './assets/css/hands.css';
+import tableCss from './assets/css/table.css';
 /******************************************************************
  * Styles
  ******************************************************************/
@@ -11,27 +12,49 @@ export const CardStyles = () => (
 export const HandStyles = () => (
   <style dangerouslySetInnerHTML={{__html: handsCss}} />
 );
+export const TableStyles = () => (
+  <style dangerouslySetInnerHTML={{__html: tableCss}} />
+);
+export const IcomoonStyles = () => (
+  <link rel="stylesheet" href="https://cdn.adom.co/fonts/icomoon/style.css" />
+);
 /******************************************************************
  * Deck
  ******************************************************************/
-export const Deck = ({ color, size=52 }) => {
+export const Deck = ({ cards=[], size=52, className, style, onClick=()=>{}, onHover=()=>{}  }) => {
+  const defaultClasses = ['deck'];
+  let [styles, setStyles] = useState(!style ? { left: `calc(50vw - 90px`, top: `calc(50vh - 80px)` } : style);
+  const c = [];
+  for(let i = 0; i++ < Number(size) || cards.length;)
+    c.push(i);
   return (
-    <div>Deck</div>
+    <ul className={ reducedClassNames(defaultClasses, className) } style={style}>
+      {
+        c.map((i) => {
+          return (
+            <li key={i} style={styles} onClick={() => setStyles({ left: `calc(50vw - 90px`, top: `calc(30vh - ${i*2}px)` } )}>
+              { <Card onClick={onClick} onMouseOver={onHover} style={{bottom: i/3, left: i/3, zIndex: i}} /> }
+            </li>
+          );
+        })
+      }
+    </ul>
   );
 };
 /******************************************************************
  * Hand
  ******************************************************************/
-export const Hand = ({ cards=[], trump=false, follow=false, className, onClick=()=>{}, onHover=()=>{} }) => {
-  const defaultClasses = ['hand'];
+export const Hand = ({ cards=[], trump=false, follow=false, className, style, onClick=()=>{}, onHover=()=>{} }) => {
+  const defaultClasses = ['hand', `cards-${cards.length}`];
+  const newStyle = !style ? { left: `calc(50vw - ${70 + 20 * (cards.length - 1)}px` } : style;
   return (
-    <ul className={ reducedClassNames(defaultClasses, className) }>
+    <ul className={ reducedClassNames(defaultClasses, className) } style={newStyle}>
       {
         cards.map((card,i) => {
           const classes = cardClassNames(card,cards,follow,trump);
           return (
             <li key={i} className={classes}>
-              <Card suit={card.suit} face={card.face} playable={classes.includes('playable')} onClick={onClick} onHover={onHover} />
+              <Card suit={card.suit} face={card.face} playable={classes.includes('playable')} onClick={onClick} onMouseOver={onHover} />
             </li>
           );
         })
@@ -42,15 +65,15 @@ export const Hand = ({ cards=[], trump=false, follow=false, className, onClick=(
 /******************************************************************
  * Card
  ******************************************************************/
-export const Card = ({ suit, face, width, height, className, onClick=()=>{}, onHover=()=>{} }) => {
+export const Card = ({ suit, face, width, height, className, style, onClick=()=>{}, onHover=()=>{} }) => {
   const defaultClasses = ['playing-card'];
-  let style = {};
+  let imgStyle = {};
   if (width)
-    style.width = width;
+    imgStyle.width = width;
   if (height)
-    style.height = height;
+    imgStyle.height = height;
   if (!width && !height)
-    style.width = 150;
+    imgStyle.width = 150;
   suit = String(suit).toUpperCase();
   face = String(face).toUpperCase();
   switch(suit) {
@@ -87,9 +110,9 @@ export const Card = ({ suit, face, width, height, className, onClick=()=>{}, onH
     onHover(e,card);
   };
   return (
-    <span onClick={e => click(e,{face,suit})} onHover={e => hover(e,{face,suit})}
-      className={ reducedClassNames(defaultClasses,className) }>
-      <img src={ require(`./assets/png/cards/${face}${suit}.png`) } alt={`${face}${suit}`} style={style} />
+    <span onClick={e => click(e,{face,suit})} onMouseOver={e => hover(e,{face,suit})}
+      className={ reducedClassNames(defaultClasses,className) } style={style}>
+      <img src={ require(`./assets/png/cards/${face}${suit}.png`) } alt={`${face}${suit}`} style={imgStyle} />
     </span>
   );
 };
@@ -107,5 +130,64 @@ export const Chip = ({ color, value }) => {
 export const Dice = ({ color, value }) => {
   return (
     <div>Dice</div>
+  );
+};
+/******************************************************************
+ * Table
+ ******************************************************************/
+export const Table = ({ children, background }) => {
+  let texture;
+  switch(String(background).toLowerCase()) {
+    case 'light':
+      texture = 'default-light';
+      break;
+    case 'subtle':
+      texture = 'subtle';
+      break;
+    case 'felt':
+      texture = 'felt';
+      break;
+    case 'fabric':
+      texture = 'fabric';
+      break;
+    case 'pinstripe':
+      texture = 'pinstripe';
+      break;
+    case 'noise':
+      texture = 'noise';
+      break;
+    case 'paper':
+      texture = 'paper';
+      break;
+    case 'leather':
+      texture = 'leather';
+      break;
+    case 'slate':
+      texture = 'slate';
+      break;
+    case 'suede':
+      texture = 'suede';
+      break;
+    case 'twill':
+      texture = 'twill';
+      break;
+    case 'burlap':
+      texture = 'burlap';
+      break;
+    case 'cardboard':
+      texture = 'cardboard';
+      break;
+    case 'default':
+    default:
+      texture = 'default';
+  }
+  return (
+    <div className="table-background" style={{backgroundImage: `url(${require(`./assets/png/textures/${texture}.png`)})`}}>
+      <CardStyles />
+      <HandStyles />
+      <TableStyles />
+      <IcomoonStyles />
+      { children }
+    </div>
   );
 };

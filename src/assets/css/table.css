@@ -1,0 +1,125 @@
+html,body {
+  margin: 0;
+  padding: 0;
+}
+
+.table-background {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  padding-top: 10vh;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  background: #436322;
+  background-image: url('/dist/assets/png/textures/default.png'); /* fallback */
+  background-image: url('/dist/assets/png/textures/default.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+  /* background: linear-gradient(-20deg, #7eb53e 0%, #507528 100%); */
+}
+
+/* table shadow on corners */
+.table-background:before {
+  /* position: fixed;
+  top: 0; left: calc(50% - 50vh);
+  width: 100vh;
+  height: 100vh;
+  content: '';
+  border-radius: 50%;
+  box-shadow: 0 0 50vw 50vw rgba(0, 0, 0, 0.5); */
+	
+}
+
+.table-background:after {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  font-size: 20vw;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.1);
+  font-family: 'icomoon' !important;
+  content: "\e917"; /*  \e918 \e919 \e9da */
+  text-shadow: 0px 1px 0px rgba(255,255,255,.05), 0px -1px 0px rgba(0,0,0,.1);
+}
+.table-background.spades:after {
+  content: "\e917"; /*  \e918 \e919 \e9da */
+}
+/* const textures = ['default', 'default-light', 'subtle', 'felt', 'fabric', 'pinstripe', 'noise', 'paper', 'leather', 'slate', 'suede', 'twill', 'burlap', 'cardboard']; */
+.table-background.default {
+  background-image: url('../png/textures/default.png');
+  background-image: url('../png/textures/default.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.default-light {
+  background-image: url('../png/textures/default-light.png');
+  background-image: url('../png/textures/default-light.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.subtle {
+  background-image: url('../png/textures/subtle.png');
+  background-image: url('../png/textures/subtle.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.felt {
+  background-image: url('../png/textures/felt.png');
+  background-image: url('../png/textures/felt.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.fabric {
+  background-image: url('../png/textures/fabric.png');
+  background-image: url('../png/textures/fabric.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.pinstripe {
+  background-image: url('../png/textures/pinstripe.png');
+  background-image: url('../png/textures/pinstripe.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.noise {
+  background-image: url('../png/textures/noise.png');
+  background-image: url('../png/textures/noise.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.paper {
+  background-image: url('../png/textures/paper.png');
+  background-image: url('../png/textures/paper.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.leather {
+  background-image: url('../png/textures/leather.png');
+  background-image: url('../png/textures/leather.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.slate {
+  background-image: url('../png/textures/slate.png');
+  background-image: url('../png/textures/slate.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.suede {
+  background-image: url('../png/textures/suede.png');
+  background-image: url('../png/textures/suede.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.twill {
+  background-image: url('../png/textures/twill.png');
+  background-image: url('../png/textures/twill.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.burlap {
+  background-image: url('../png/textures/burlap.png');
+  background-image: url('../png/textures/burlap.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+.table-background.cardboard {
+  background-image: url('../png/textures/cardboard.png');
+  background-image: url('../png/textures/cardboard.png'), linear-gradient(-20deg, #71A338 0%, #436322 100%); /* W3C */
+}
+
+  
+@media(max-width: 768px) {
+  .table-background:after {
+    margin-top: -5vh;
+    font-size: 50vw;
+  }
+}
+
+/* Centered form */
+
+
+.centered-form {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+  margin-top: -58px;
+}
+ 
