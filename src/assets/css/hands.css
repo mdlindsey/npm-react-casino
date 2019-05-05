@@ -15,9 +15,10 @@ ul.hand {
   position: fixed;
   z-index: 5;
   font-size: 2.5em;
+  bottom: -2em;
 }
 
-.hand:nth-of-type(1) {
+/* .hand:nth-of-type(1) {
   bottom: -2em;
 }
 .hand:nth-of-type(2) {
@@ -46,7 +47,7 @@ ul.hand {
   -o-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
-}
+} */
 
 
 /* https://github.com/selfthinker/CSS-Playing-Cards */
@@ -58,7 +59,7 @@ ul.hand > li.playable:hover {
   padding-bottom: 0.5em;
 }
 
-ul.deck { position: absolute; }
+ul.deck, ul.hand { position: absolute; }
 
 
 ul.table,
