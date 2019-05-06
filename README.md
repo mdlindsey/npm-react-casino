@@ -75,6 +75,36 @@ const PepperHand = () => {
 - `style` - styles object to apply to the wrapper
 - `className` - When supplied with a string, only the string you supply will be used, overriding the default classes; if supplied with an array, your supplied classes will be applied in addition to the default classes
 
+### Tables
+
+Tables automatically include all styling.
+
+#### Example
+
+```js
+
+import React from 'react';
+import { Card, Table, Deck, Hand } from 'react-casino';
+
+const PokerTable = () => {
+  return (
+    <Table>
+      <Deck size="40" style={{left: '10vw'}} />
+      <Deck size="5" style={{left: '22vw'}} />
+      <div style={{position: 'absolute', left: '40vw'}}>
+        <Card face="A" suit="C" />
+        <Card face="A" suit="H" />
+        <Card face="K" suit="H" />
+      </div>
+      <Hand follow="C" trump="S" cards={[
+        { suit: 'S', face: 'A' },
+        { suit: 'D', face: 'A' }
+      ]} onClick={(e,card) => console.log(`Clicked ${card.face}${card.suit}`)} />
+    </Table>
+  );
+};
+```
+
 ## Building
 
 When modifying the package for testing or publishing run `npm run build` which will create the `dist/` folder from which the module is served.

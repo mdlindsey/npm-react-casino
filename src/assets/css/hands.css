@@ -59,11 +59,12 @@ ul.hand > li.playable:hover {
   padding-bottom: 0.5em;
 }
 
-ul.deck, ul.hand { position: absolute; }
+ul.deck, ul.hand, ul.stack { position: absolute; }
 
 
 ul.table,
 ul.hand,
+ul.stack,
 ul.deck {
     list-style-type: none;
     padding: 0;
@@ -76,6 +77,7 @@ ul.hand {
 }
 ul.table > li,
 ul.hand > li,
+ul.stack,
 ul.deck > li {
     margin: 0;
     padding: 0;
@@ -84,10 +86,12 @@ ul.deck > li {
 }
 
 ul.hand,
+ul.stack,
 ul.deck {
     height: 8em;
 }
 ul.hand > li,
+ul.stack > li,
 ul.deck > li {
     position: absolute;
 }
@@ -112,10 +116,14 @@ ul.hand > li.swapped::after {
   height: calc(100% - 0.5em);
 }
 
-ul.deck > li:nth-of-type(odd) img {
+ul.deck > li:nth-of-type(odd) img,
+ul.stack > li:nth-of-type(odd) img {
   border: 1px solid gray;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
+}
+ul.stack > li:nth-of-type(odd) img {
+  border-radius: 50%;
 }
 
 ul.hand.played {

@@ -1,0 +1,10 @@
+.chip {
+  display: block;
+  position: absolute;
+}
+
+.chip img {
+  width: 64px;
+}
+
+/* stack stored with ul.hands */

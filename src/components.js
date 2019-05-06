@@ -3,6 +3,7 @@ import { cardClassNames, reducedClassNames } from './mixins';
 import cardsCss from './assets/css/cards.css';
 import handsCss from './assets/css/hands.css';
 import tableCss from './assets/css/table.css';
+import chipsCss from './assets/css/chips.css';
 /******************************************************************
  * Styles
  ******************************************************************/
@@ -11,6 +12,9 @@ export const CardStyles = () => (
 );
 export const HandStyles = () => (
   <style dangerouslySetInnerHTML={{__html: handsCss}} />
+);
+export const ChipStyles = () => (
+  <style dangerouslySetInnerHTML={{__html: chipsCss}} />
 );
 export const TableStyles = () => (
   <style dangerouslySetInnerHTML={{__html: tableCss}} />
@@ -79,8 +83,10 @@ export const Card = ({ suit, face, width, height, className, style, onClick=()=>
     imgStyle.width = width;
   if (height)
     imgStyle.height = height;
-  if (!width && !height)
+  if (!width && !height) {
     imgStyle.width = 150;
+    imgStyle.height = 217;
+  }
   suit = String(suit).toUpperCase();
   face = String(face).toUpperCase();
   switch(suit) {
@@ -126,9 +132,69 @@ export const Card = ({ suit, face, width, height, className, style, onClick=()=>
 /******************************************************************
  * Chip
  ******************************************************************/
-export const Chip = ({ color, value }) => {
+export const Chip = ({ color, value, width, height, className, style, onClick=()=>{}, onHover=()=>{} }) => {
+  const defaultClasses = ['chip'];
+  let imgStyle = {};
+  if (width)
+    imgStyle.width = width;
+  if (height)
+    imgStyle.height = height;
+  if (!width && !height) {
+    imgStyle.width = 64;
+    imgStyle.height = 64;
+  }
+  switch(color) {
+    case 'red':
+    case 'blue':
+    case 'black':
+    case 'white':
+    case 'green':
+      break;
+    default:
+      color = 'white';
+  }
+  const click = (e,card) => {
+    onClick(e,card);
+  };
+  const hover = (e,card) => {
+    onHover(e,card);
+  };
   return (
-    <div>Chip</div>
+    <span onClick={e => click(e,{color,value})} onMouseOver={e => hover(e,{color,value})}
+      className={ reducedClassNames(defaultClasses,className) } style={style}>
+      <img src={ require(`./assets/png/chips/${color}.png`) } alt={`${color}`} style={imgStyle} />
+    </span>
+  );
+};
+/******************************************************************
+ * Chip Stack
+ ******************************************************************/
+export const Stack = ({ color, size, value, className, style, onClick=()=>{}, onHover=()=>{}  }) => {
+  let [styles, setStyles] = useState([]);
+  if (!styles.length) {
+    for(let i = 0; i++ < Number(size);)
+    styles.push({});
+  }
+  const defaultClasses = ['stack'];
+  const newStyle = !style ? { left: `calc(50vw - 190px`, bottom: `5vh` } : style;
+  const setStyle = (i,s,styles) => {
+    let arr = [...styles];
+    arr[i] = s;
+    setStyles(arr);
+  };
+  console.log('chips:', styles.length);
+  return (
+    <ul className={ reducedClassNames(defaultClasses, className) } style={newStyle}>
+      {
+        styles.map((style,i) => {
+          return (
+            <li key={i} style={style} onClick={() => setStyle(i, { left: `calc(250px + ${i}px`, bottom: `calc(250px - ${i}px)` }, styles)}>
+              { <Chip color={color} onClick={onClick} onMouseOver={onHover} style={{bottom: i, left: i/2, zIndex: i+1}} /> }
+            </li>
+          );
+        })
+      }
+    </ul>
   );
 };
 /******************************************************************
@@ -192,6 +258,7 @@ export const Table = ({ children, background }) => {
     <div className="table-background" style={{backgroundImage: `url(${require(`./assets/png/textures/${texture}.png`)})`}}>
       <CardStyles />
       <HandStyles />
+      <ChipStyles />
       <TableStyles />
       <IcomoonStyles />
       { children }
