@@ -5,7 +5,7 @@
   "dependencies": {
     "@babel/core": "^7.4.4",
     "react": "^16.8.6",
-    "react-casino": "^0.1.6",
+    "react-casino": "^0.2.0",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
