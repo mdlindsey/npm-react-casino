@@ -14,19 +14,37 @@ You can pass a `style`, and `className` attribute to any component. Expected beh
 
 Individual cards are rendered from high-quality PNGs and can be monitored with callbacks for all applicable player actions.
 
-#### Example
+#### Examples
+
+[Poker Table](https://adom.github.io/npm-react-casino/)
 
 ```js
+
 import React from 'react';
 import { Card, CardStyles } from 'react-casino';
 
-const BlackJack = () => {
+const PokerTable = () => {
   return (
-    <div>
-      <CardStyles />
-      <Card face="A" suit="S" />
-      <Card face="K" suit="S" />
-    </div>
+    <Table>
+      <Stack size="20" color="blue" style={{left: '20vw', bottom: '5vh'}} />
+      <Stack size="15" color="black" style={{left: '25vw', bottom: '5vh'}} />
+      <Stack size="10" color="green" style={{left: '30vw', bottom: '5vh'}} />
+      <Stack size="10" color="red" style={{left: '35vw', bottom: '5vh'}} />
+      <Stack size="10" color="white" style={{left: '40vw', bottom: '5vh'}} />
+      <Deck size="40" style={{left: '10vw'}} />
+      <Deck size="5" style={{left: '22vw'}} />
+      <div style={{position: 'absolute', left: '35vw'}}>
+        <Card face="A" suit="C" />
+        <Card face="A" suit="H" />
+        <Card face="K" suit="H" />
+        <Card face="K" suit="C" />
+        <Card face="K" suit="D" />
+      </div>
+      <Hand follow="C" trump="S" cards={[
+        { suit: 'S', face: 'A' },
+        { suit: 'D', face: 'A' }
+      ]} onClick={(e,card) => console.log(`Clicked ${card.face}${card.suit}`)} />
+    </Table>
   );
 };
 ```
