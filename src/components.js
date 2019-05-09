@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { cardClassNames, reducedClassNames } from './mixins';
 import cardsCss from './assets/css/cards.css';
 import handsCss from './assets/css/hands.css';
 import tableCss from './assets/css/table.css';
 import chipsCss from './assets/css/chips.css';
+const reducedClassNames = (defaultClasses=[], className=[]) => Array.isArray(className) ? [...className, ...defaultClasses].join(' ') : className || defaultClasses.join(' ');
 /******************************************************************
  * Styles
  ******************************************************************/
@@ -29,7 +29,7 @@ export const Deck = ({ cards=[], size=52, className, style, onClick=()=>{}, onHo
   let [styles, setStyles] = useState([]);
   if (!styles.length) {
     for(let i = 0; i++ < Number(size) || cards.length;)
-    styles.push({});
+      styles.push({});
   }
   const defaultClasses = ['deck'];
   const newStyle = !style ? { left: `calc(50vw - 90px`, top: `calc(50vh - 80px)` } : style;
@@ -55,14 +55,33 @@ export const Deck = ({ cards=[], size=52, className, style, onClick=()=>{}, onHo
 /******************************************************************
  * Hand
  ******************************************************************/
-export const Hand = ({ cards=[], trump=false, follow=false, className, style, onClick=()=>{}, onHover=()=>{} }) => {
+export const Hand = ({ cards=[], playable=[], strict={ /* requires all playable attrs to match */ }, className, style, onClick=()=>{}, onHover=()=>{} }) => {
+
+  const isPlayable = card => {
+    let matches = 0;
+    if (Array.isArray(playable) && playable.length) {
+      for(const condition of playable) {
+        let conditionMatches = 0;
+        for(const prop in condition) {
+          if (card[prop] && card[prop] === condition[prop])
+            conditionMatches++;
+        }
+        if (conditionMatches === Object.keys(condition).length)
+          matches++ && console.log(card, condition);
+      }
+    }
+    return matches > 0;
+  };
+  
+  const playableCards = cards.filter(card => isPlayable(card));
+  const cardClasses = card => [isPlayable(card) && playableCards.length ? 'dim' : 'playable'];
   const defaultClasses = ['hand', `cards-${cards.length}`];
   const newStyle = !style ? { left: `calc(50vw - ${70 + 20 * (cards.length - 1)}px` } : style;
   return (
     <ul className={ reducedClassNames(defaultClasses, className) } style={newStyle}>
       {
         cards.map((card,i) => {
-          const classes = cardClassNames(card,cards,follow,trump);
+          const classes = cardClasses(card);
           return (
             <li key={i} className={classes}>
               <Card suit={card.suit} face={card.face} playable={classes.includes('playable')} onClick={onClick} onMouseOver={onHover} />

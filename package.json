@@ -57,5 +57,8 @@
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-terser": "^4.0.4"
+  },
+  "dependencies": {
+    "react": "^16.8.6"
   }
 }

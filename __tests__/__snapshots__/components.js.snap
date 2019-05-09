@@ -4,7 +4,7 @@ exports[`Card will render 1`] = `
 <span
   className="playing-card"
   onClick={[Function]}
-  onHover={[Function]}
+  onMouseOver={[Function]}
 >
   <img
     alt="AS"
@@ -15,6 +15,7 @@ exports[`Card will render 1`] = `
     }
     style={
       Object {
+        "height": 217,
         "width": 150,
       }
     }

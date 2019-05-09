@@ -1,7 +1,9 @@
-import * as Mixins from './mixins';
+import * as Games from './games';
 import * as Components from './components';
 
 export default {
-  ...Mixins,
+  Games,
+  Components,
+  ...Games,
   ...Components
 };
