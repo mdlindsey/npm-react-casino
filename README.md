@@ -2,6 +2,8 @@
 
 Component library for playing cards, chips, and other common casino game items including game logic for Poker, Blackjack, Spades, Hearts, Pepper, and more.
 
+For demos check out our [GitHub Pages Demo](https://adom.github.io/npm-react-casino/).
+
 ## Usage
 
 You can pass a `style`, and `className` attribute to any component. Expected behavior is default for styles. With classes, if you supply a string, only the string you supply will be used, overriding the default classes. If you supply an array, your supplied classes will be applied in addition to the default classes. You will see various styling components such as `CardStyles` in the examples; all styling components are optional and simply render CSS for default styling.
@@ -10,9 +12,7 @@ You can pass a `style`, and `className` attribute to any component. Expected beh
 
 Individual cards are rendered from high-quality PNGs and can be monitored with callbacks for all applicable player actions.
 
-#### Examples
-
-[Poker Table](https://adom.github.io/npm-react-casino/)
+#### Example
 
 ```js
 import React from 'react';
