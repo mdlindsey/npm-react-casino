@@ -66,11 +66,19 @@ export const Hand = ({ cards=[], playable=[], strict=false, className, style, on
       for(const condition of playable) {
         let conditionMatches = 0;
         for(const prop in condition) {
+          if (prop.match(/^_/)) // skip _not and/or _required
+            continue;
           if (card[prop] && card[prop] === condition[prop])
             conditionMatches++;
         }
-        if (conditionMatches === Object.keys(condition).length)
-          matches++ && console.log(card, condition);
+        // make sure all props not starting with _ are matched
+        const conditionProps = Object.keys(condition).filter(key => !key.match(/^_/)).length;
+        const matched = conditionMatches === conditionProps;
+        if (matched) 
+          matches++;
+        const noMatch = (!condition._not && conditionMatches !== conditionProps) || (condition._not && conditionMatches === conditionProps);
+        if (noMatch && condition._required)
+          return false;
       }
     }
     return matches > 0;

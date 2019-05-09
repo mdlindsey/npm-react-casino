@@ -2,6 +2,8 @@
 
 Component library for playing cards, chips, and other common casino game items.
 
+-- In current system of playable conditions there is no way to say "get me a club that isn't JC if spades is trump"
+
 ## Usage
 
 You can pass a `style`, and `className` attribute to any component. Expected behavior is default for styles. With classes, if you supply a string, only the string you supply will be used, overriding the default classes. If you supply an array, your supplied classes will be applied in addition to the default classes. You will see various styling components such as `CardStyles` in the examples; all styling components are optional and simply render CSS for default styling.
@@ -68,30 +70,27 @@ Pepper hand sorted with spades as trump
 
 ```js
 import React from 'react';
-import { Hand, HandStyles, Games } from 'react-casino';
-
-const PepperHand = () => {
-  // array of cards for this hand
-  const cards = [
-    { suit: 'S', face: 'A' },
-    { suit: 'S', face: 'J' },
-    { suit: 'C', face: 'J' },
-    { suit: 'D', face: 'A' },
-    { suit: 'H', face: 'K' },
-    { suit: 'S', face: '9' },
-  ];
-  // sort cards accoridng to game (optional)
-  const sortedCards = Games.pepper.mixins.sortCards(cards, 'S');
-  // define playable rules (optional)
-  const playable = [
-    {suit: 'H'},
-    {suit: 'C', face: 'J'}
-  ];
+import { Hand, Table, Games } from 'react-casino';
+const cards = [
+  { suit: 'S', face: 'A' },
+  { suit: 'S', face: 'J' },
+  { suit: 'C', face: 'J' },
+  { suit: 'C', face: 'A' },
+  { suit: 'H', face: 'K' },
+  { suit: 'S', face: '9' },
+];
+const sortedCards = Games.pepper.mixins.sortCards(cards, 'S');
+const playable = [ // find cards that are clubs but not JC
+  {suit: 'C', _required: true},
+  {suit: 'C', face: 'J', _required: true, _not: true}
+];
+export default () => {
   return (
-    <div>
-      <HandStyles />
-      <Hand cards={sortedCards} playable={playable} />
-    </div>
+    <main>
+      <Table>
+        <Hand cards={sortedCards} playable={playable} onClick={(e,card) => console.log(`Clicked ${card.face}${card.suit}`)} />
+      </Table>
+    </main>
   );
 };
 ```
