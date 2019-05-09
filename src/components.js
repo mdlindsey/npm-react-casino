@@ -229,7 +229,7 @@ export const Dice = ({ color, value }) => {
 /******************************************************************
  * Table
  ******************************************************************/
-export const Table = ({ children, background }) => {
+export const Table = ({ children, background, noStyle }) => {
   let texture;
   switch(String(background).toLowerCase()) {
     case 'light':
@@ -277,11 +277,17 @@ export const Table = ({ children, background }) => {
   }
   return (
     <div className="table-background" style={{backgroundImage: `url(${require(`./assets/png/textures/${texture}.png`)})`}}>
-      <CardStyles />
-      <HandStyles />
-      <ChipStyles />
-      <TableStyles />
-      <IcomoonStyles />
+      {
+        noStyle ? null : (
+          <div>
+            <CardStyles />
+            <HandStyles />
+            <ChipStyles />
+            <TableStyles />
+            <IcomoonStyles />
+          </div>
+        )
+      }
       { children }
     </div>
   );

@@ -102,7 +102,7 @@ export default () => {
 
 ### Tables
 
-Tables automatically include all styling.
+Tables automatically include all styling unless the `noStyle` prop is passed.
 
 #### Example
 
