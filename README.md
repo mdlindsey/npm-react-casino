@@ -15,32 +15,15 @@ Individual cards are rendered from high-quality PNGs and can be monitored with c
 [Poker Table](https://adom.github.io/npm-react-casino/)
 
 ```js
-
 import React from 'react';
 import { Card, CardStyles } from 'react-casino';
 
-const PokerTable = () => {
+const AceOfSpades = () => {
   return (
-    <Table>
-      <Stack size="20" color="blue" style={{left: '20vw', bottom: '5vh'}} />
-      <Stack size="15" color="black" style={{left: '25vw', bottom: '5vh'}} />
-      <Stack size="10" color="green" style={{left: '30vw', bottom: '5vh'}} />
-      <Stack size="10" color="red" style={{left: '35vw', bottom: '5vh'}} />
-      <Stack size="10" color="white" style={{left: '40vw', bottom: '5vh'}} />
-      <Deck size="40" style={{left: '10vw'}} />
-      <Deck size="5" style={{left: '22vw'}} />
-      <div style={{position: 'absolute', left: '35vw'}}>
-        <Card face="A" suit="C" />
-        <Card face="A" suit="H" />
-        <Card face="K" suit="H" />
-        <Card face="K" suit="C" />
-        <Card face="K" suit="D" />
-      </div>
-      <Hand follow="C" trump="S" cards={[
-        { suit: 'S', face: 'A' },
-        { suit: 'D', face: 'A' }
-      ]} onClick={(e,card) => console.log(`Clicked ${card.face}${card.suit}`)} />
-    </Table>
+    <div>
+      <CardStyles />
+      <Card suit="S" face="A" />
+    </div>
   );
 };
 ```
@@ -62,22 +45,52 @@ Multiple cards can be maintained via a single component that has baked in functi
 
 #### Example
 
+Simple blackjack hand
+
 ```js
 import React from 'react';
-import { Card, CardStyles } from 'react-casino';
+import { Hand, HandStyles, Games } from 'react-casino';
 
-const PepperHand = () => {
+const BlackjackHand = () => {
   return (
     <div>
       <HandStyles />
-      <Hand follow="C" cards={[
+      <Hand cards={[
         { suit: 'S', face: 'A' },
-        { suit: 'S', face: 'K' },
-        { suit: 'S', face: 'Q' },
-        { suit: 'S', face: 'J' },
-        { suit: 'S', face: 'T' },
-        { suit: 'C', face: '9' }
+        { suit: 'S', face: 'K' }
       ]} />
+    </div>
+  );
+};
+```
+
+Pepper hand sorted with spades as trump
+
+```js
+import React from 'react';
+import { Hand, HandStyles, Games } from 'react-casino';
+
+const PepperHand = () => {
+  // array of cards for this hand
+  const cards = [
+    { suit: 'S', face: 'A' },
+    { suit: 'S', face: 'J' },
+    { suit: 'C', face: 'J' },
+    { suit: 'D', face: 'A' },
+    { suit: 'H', face: 'K' },
+    { suit: 'S', face: '9' },
+  ];
+  // sort cards accoridng to game (optional)
+  const sortedCards = Games.pepper.mixins.sortCards(cards, 'S');
+  // define playable rules (optional)
+  const playable = [
+    {suit: 'H'},
+    {suit: 'C', face: 'J'}
+  ];
+  return (
+    <div>
+      <HandStyles />
+      <Hand cards={sortedCards} playable={playable} />
     </div>
   );
 };
@@ -86,8 +99,8 @@ const PepperHand = () => {
 #### Props
 
 - `cards` - Array of cards that the hand contains
-- `follow` - Suit that must be followed if possible (if applicable - eg: Hearts, Spades, Pepper)
-- `trump` - Trump suit (if applicable - eg: Spades, Pepper)
+- `playable` - Boolean or Array of conditions that playable cards must meet to be playable
+- `strict` - Boolean if true (default) any card can be played when no cards in hand are playable
 - `onClick` - Callback that is executed when a card in the hand is clicked; receives `(event,card)` parameters
 - `onHover` - Callback that is executed when a card in the hand is hovered over; receives `(event,card)` parameters
 - `style` - styles object to apply to the wrapper
@@ -100,19 +113,25 @@ Tables automatically include all styling.
 #### Example
 
 ```js
-
 import React from 'react';
-import { Card, Table, Deck, Hand } from 'react-casino';
+import { Card, CardStyles } from 'react-casino';
 
 const PokerTable = () => {
   return (
     <Table>
+      <Stack size="20" color="blue" style={{left: '20vw', bottom: '5vh'}} />
+      <Stack size="15" color="black" style={{left: '25vw', bottom: '5vh'}} />
+      <Stack size="10" color="green" style={{left: '30vw', bottom: '5vh'}} />
+      <Stack size="10" color="red" style={{left: '35vw', bottom: '5vh'}} />
+      <Stack size="10" color="white" style={{left: '40vw', bottom: '5vh'}} />
       <Deck size="40" style={{left: '10vw'}} />
       <Deck size="5" style={{left: '22vw'}} />
-      <div style={{position: 'absolute', left: '40vw'}}>
+      <div style={{position: 'absolute', left: '35vw'}}>
         <Card face="A" suit="C" />
         <Card face="A" suit="H" />
         <Card face="K" suit="H" />
+        <Card face="K" suit="C" />
+        <Card face="K" suit="D" />
       </div>
       <Hand follow="C" trump="S" cards={[
         { suit: 'S', face: 'A' },

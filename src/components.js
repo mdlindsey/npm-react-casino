@@ -55,10 +55,13 @@ export const Deck = ({ cards=[], size=52, className, style, onClick=()=>{}, onHo
 /******************************************************************
  * Hand
  ******************************************************************/
-export const Hand = ({ cards=[], playable=[], strict={ /* requires all playable attrs to match */ }, className, style, onClick=()=>{}, onHover=()=>{} }) => {
-
+export const Hand = ({ cards=[], playable=[], strict=false, className, style, onClick=()=>{}, onHover=()=>{} }) => {
   const isPlayable = card => {
     let matches = 0;
+    if (!playable)
+      return false;
+    if (playable && (!Array.isArray(playable) || !playable.length))
+      return true;
     if (Array.isArray(playable) && playable.length) {
       for(const condition of playable) {
         let conditionMatches = 0;
@@ -74,7 +77,7 @@ export const Hand = ({ cards=[], playable=[], strict={ /* requires all playable 
   };
   
   const playableCards = cards.filter(card => isPlayable(card));
-  const cardClasses = card => [isPlayable(card) && playableCards.length ? 'dim' : 'playable'];
+  const cardClasses = card => [isPlayable(card) || (!playableCards.length && !strict) ? 'playable' : 'dim'];
   const defaultClasses = ['hand', `cards-${cards.length}`];
   const newStyle = !style ? { left: `calc(50vw - ${70 + 20 * (cards.length - 1)}px` } : style;
   return (
