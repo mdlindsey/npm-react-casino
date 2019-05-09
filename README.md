@@ -1,8 +1,6 @@
 # React Casino
 
-Component library for playing cards, chips, and other common casino game items.
-
--- In current system of playable conditions there is no way to say "get me a club that isn't JC if spades is trump"
+Component library for playing cards, chips, and other common casino game items including game logic for Poker, Blackjack, Spades, Hearts, Pepper, and more.
 
 ## Usage
 
