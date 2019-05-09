@@ -4,7 +4,7 @@ Component library for playing cards, chips, and other common casino game items i
 
 For demos check out our [GitHub Pages Demo](https://adom.github.io/npm-react-casino/).
 
-## Usage
+## Components
 
 You can pass a `style`, and `className` attribute to any component. Expected behavior is default for styles. With classes, if you supply a string, only the string you supply will be used, overriding the default classes. If you supply an array, your supplied classes will be applied in addition to the default classes. You will see various styling components such as `CardStyles` in the examples; all styling components are optional and simply render CSS for default styling.
 
@@ -135,6 +135,10 @@ const PokerTable = () => {
   );
 };
 ```
+
+## Games
+
+Game logic for each game includes controllers, mixins, and bot functionality.
 
 ### Bots
 
