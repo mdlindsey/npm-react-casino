@@ -34,12 +34,10 @@ const AceOfSpades = () => {
 
 - `suit` - Suit of the card (spades, clubs, diamons, hearts) abbreviated with a single letter (eg: S, C, D, H); if none is specified the back of a card will be shown instead
 - `face` - Face of the card (Ace, King, Queen, etc) abbreviated with a single letter (eg: A, K, Q, J, T, 9, etc); if none is specified the back of a card will be shown instead
-- `width` - Width of the card
-- `height` - Height of the card
 - `onClick` - Callback that is executed when a card is clicked; receives `(event,card)` parameters
 - `onHover` - Callback that is executed when a card is hovered over; receives `(event,card)` parameters
-- `style` - styles object to apply to the wrapper
-- `className` - When supplied with a string, only the string you supply will be used, overriding the default classes; if supplied with an array, your supplied classes will be applied in addition to the default classes
+- `style` - Styles object to apply to the card image
+- `className` - Classes array to apply to the wrapper; when supplied with a string, only the string you supply will be used, overriding the default classes; if supplied with an array, your supplied classes will be applied in addition to the default classes
 
 ### Hands
 
@@ -66,7 +64,7 @@ const BlackjackHand = () => {
 };
 ```
 
-Pepper hand sorted with spades as trump
+Pepper hand with spades as trump and a club led
 
 ```js
 import React from 'react';
@@ -87,9 +85,8 @@ const playable = [ // find cards that are clubs but not JC
 export default () => {
   return (
     <main>
-      <Table>
-        <Hand cards={sortedCards} playable={playable} onClick={(e,card) => console.log(`Clicked ${card.face}${card.suit}`)} />
-      </Table>
+      <HandStyles />
+      <Hand cards={sortedCards} playable={playable} onClick={(e,card) => console.log(`Clicked ${card.face}${card.suit}`)} />
     </main>
   );
 };
@@ -139,6 +136,39 @@ const PokerTable = () => {
     </Table>
   );
 };
+```
+
+### Bots
+
+Bots are available to make gameplay decisions based on the current state of the game.
+
+#### Blackjack
+
+```js
+import { Games } from 'react-casino';
+const { act } = Games.blackjack.bot;
+```
+
+### Controllers
+
+...
+
+### Mixins
+
+Mixins are available for commonly used functionality specific to each game such as sorting cards, determining card value, etc.
+
+#### Blackjack
+
+```js
+import { Games } from 'react-casino';
+const { HIT, STAND, cardValue, handValue } = Games.blackjack.mixins;
+```
+
+#### Pepper
+
+```js
+import { Games } from 'react-casino';
+const { isBower, sortCards, cardSuit, cardValue } = Games.pepper.mixins;
 ```
 
 ## Building

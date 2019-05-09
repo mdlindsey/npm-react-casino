@@ -106,17 +106,8 @@ export const Hand = ({ cards=[], playable=[], strict=false, className, style, on
 /******************************************************************
  * Card
  ******************************************************************/
-export const Card = ({ suit, face, width, height, className, style, onClick=()=>{}, onHover=()=>{} }) => {
+export const Card = ({ suit, face, className, style, onClick=()=>{}, onHover=()=>{} }) => {
   const defaultClasses = ['playing-card'];
-  let imgStyle = {};
-  if (width)
-    imgStyle.width = width;
-  if (height)
-    imgStyle.height = height;
-  if (!width && !height) {
-    imgStyle.width = 150;
-    imgStyle.height = 217;
-  }
   suit = String(suit).toUpperCase();
   face = String(face).toUpperCase();
   switch(suit) {
@@ -154,8 +145,8 @@ export const Card = ({ suit, face, width, height, className, style, onClick=()=>
   };
   return (
     <span onClick={e => click(e,{face,suit})} onMouseOver={e => hover(e,{face,suit})}
-      className={ reducedClassNames(defaultClasses,className) } style={style}>
-      <img src={ require(`./assets/png/cards/${face}${suit}.png`) } alt={`${face}${suit}`} style={imgStyle} />
+      className={ reducedClassNames(defaultClasses,className) }>
+      <img src={ require(`./assets/png/cards/${face}${suit}.png`) } alt={`${face}${suit}`} style={{width: 150, height: 217, ...style}} />
     </span>
   );
 };

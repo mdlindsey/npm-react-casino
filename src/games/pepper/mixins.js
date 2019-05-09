@@ -1,24 +1,4 @@
-
-export const HIT = true;
-export const STAND = false;
-
 export const isBower = (card,trump,bowers={S: 'C', C: 'S', H: 'D', D: 'H'}) => trump && card.suit === bowers[trump] && card.face === 'J';
-
-export const isPlayable = (card,hand,suit,trump) => {
-  const trumpBower = isBower(card,trump);
-  const sameSuit = card.suit === suit;
-  const noCardLed = !suit;
-  let haveNoneOfSuit = true;
-  hand.map(c => {
-    if (c.suit === suit && !isBower(c,trump)) {
-      haveNoneOfSuit = false;
-    }
-    return c;
-  });
-  const isPlayable = noCardLed || sameSuit || (trumpBower && suit === trump) || haveNoneOfSuit;
-  return isPlayable;
-};
-
 export const sortCards = (hand,trump=false) => {
   // group by suit
   let grouped = [];
@@ -43,11 +23,9 @@ export const sortCards = (hand,trump=false) => {
   }
   return [].concat.apply([], grouped.map(group => ({...group, cards: group.cards.sort((a,b) => cardValue(b,trump) - cardValue(a,trump))})).sort((a,b) => a.cards.length < b.cards.length).map(group => group.cards));
 };
-
 export const cardSuit = (card,trump=false) => {
   return String((trump && isBower(card,trump)) ? trump : card.suit).toUpperCase();
 };
-
 export const cardValue = (card,trump=false) => {
   if (trump && String(trump).toUpperCase() === String(card.suit).toUpperCase() && String(card.face).toUpperCase() === 'J')
     return 16;
