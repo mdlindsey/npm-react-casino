@@ -203,7 +203,6 @@ export const Stack = ({ color, size, value, className, style, onClick=()=>{}, on
     arr[i] = s;
     setStyles(arr);
   };
-  console.log('chips:', styles.length);
   return (
     <ul className={ reducedClassNames(defaultClasses, className) } style={newStyle}>
       {
